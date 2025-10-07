@@ -47,7 +47,7 @@ export function ContactInfo() {
             </svg>
           }
           title="Telefone"
-          content="+351 123 456 789"
+          content="+244 972 345 675"
           subtitle="Linha direta"
           delay={0.3}
           x={-20}
@@ -60,7 +60,7 @@ export function ContactInfo() {
             </svg>
           }
           title="Email"
-          content="geral@campoforte.pt"
+          content="geral@campoforte.ao"
           subtitle="Resposta em 24h"
           delay={0.4}
           x={20}
@@ -74,7 +74,7 @@ export function ContactInfo() {
             </svg>
           }
           title="Morada"
-          content="Quinta CampoForte"
+          content="AV.Principal, Lar do Patriota"
           subtitle="Visite-nos"
           delay={0.5}
           x={-20}

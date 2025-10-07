@@ -174,15 +174,15 @@ export function ContactHero() {
           >
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-primary" />
-              <span>+351 123 456 789</span>
+              <span>+244 972 345 675</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-4 h-4 text-primary" />
-              <span>contato@campoforte.com</span>
+              <span>contato@campoforte.ao</span>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4 text-primary" />
-              <span>Lisboa, Portugal</span>
+              <span>AV. Principal, Lar do Patriota</span>
             </div>
           </motion.div>
         </div>
