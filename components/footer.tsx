@@ -58,7 +58,7 @@ export function Footer() {
                   href="mailto:info@campoforte.pt"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  info@campoforte.pt
+                  info@campoforte.ao
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -67,12 +67,12 @@ export function Footer() {
                   href="tel:+351123456789"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  +351 123 456 789
+                  +244 972345675
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">Lisboa, Portugal</span>
+                <span className="text-sm text-muted-foreground">AV. Principal, Lar do Patriota</span>
               </li>
             </ul>
           </div>

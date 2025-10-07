@@ -524,12 +524,7 @@ export function ProductsList() {
                       </div>
 
                       {/* Price Preview */}
-                      <div className="pt-2 border-t border-border/50">
-                        <div className="flex items-baseline justify-between">
-                          <span className="text-lg font-bold text-foreground">{product.price}</span>
-                          <span className="text-xs text-muted-foreground">{product.unit}</span>
-                        </div>
-                      </div>
+                      
 
                       {/* CTA Button */}
                       <Button 
