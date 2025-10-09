@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Leaf, ChevronLeft, ChevronRight, Play, Pause } from "lucide-react"
+import { ArrowRight, Leaf, ChevronLeft, ChevronRight, Play } from "lucide-react"
 import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
@@ -164,20 +164,7 @@ export function Hero() {
         <ChevronRight className="w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
       </motion.button>
 
-      {/* Auto-play Toggle */}
-      <motion.button
-        onClick={toggleAutoPlay}
-        className="absolute top-6 right-6 z-20 p-2 rounded-full bg-background/10 backdrop-blur-md border border-primary/30 hover:bg-background/20 transition-all"
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        {isAutoPlaying ? (
-          <Pause className="w-4 h-4 text-primary" />
-        ) : (
-          <Play className="w-4 h-4 text-primary" />
-        )}
-      </motion.button>
-
+    
       {/* Content */}
       <div className="container relative z-10 px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="max-w-4xl mx-auto text-center space-y-8">

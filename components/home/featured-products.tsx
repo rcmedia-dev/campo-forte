@@ -20,8 +20,6 @@ const featuredProducts = [
     features: ["Tratamento Industrial", "Alto Vigor", "Uniformidade 98%", "Germinação >95%"],
     rating: 4.8,
     reviews: 127,
-    delivery: "Entrega 24h",
-    warranty: "Garantia Certificada",
     technicalSpecs: {
       plantPopulation: "240-280 mil plantas/ha",
       maturation: "Grupo 6.5",
@@ -48,8 +46,6 @@ const featuredProducts = [
     features: ["Liberação Gradual", "Baixa Volatilização", "Alta Solubilidade", "Sem Cloreto"],
     rating: 4.9,
     reviews: 89,
-    delivery: "Entrega Imediata",
-    warranty: "Análise Laboratorial",
     technicalSpecs: {
       composition: "N 10%, P₂O₅ 20%, K₂O 20%",
       micronutrients: "Zn 1%, B 0.5%",
@@ -76,8 +72,6 @@ const featuredProducts = [
     features: ["GPS Integrado", "Controle Eletrônico", "Cabine Comfort", "Ar Condicionado"],
     rating: 4.7,
     reviews: 203,
-    delivery: "Montagem Inclusa",
-    warranty: "36 Meses",
     technicalSpecs: {
       engine: "Turbo Diesel 6.8L",
       transmission: "16 Marchas + RE",
@@ -324,14 +318,7 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                 {/* Footer */}
                 <div className="flex items-center justify-between pt-6 border-t border-border">
                   <div className="flex items-center gap-4 text-sm">
-                    <div className="flex items-center gap-1 text-green-600">
-                      <Truck className="w-4 h-4" />
-                      <span>{product.delivery}</span>
-                    </div>
-                    <div className="flex items-center gap-1 text-blue-600">
-                      <Shield className="w-4 h-4" />
-                      <span>{product.warranty}</span>
-                    </div>
+                   
                   </div>
                   
                   <Button size="lg" className="bg-primary hover:bg-primary/90">
@@ -373,10 +360,10 @@ export function FeaturedProducts() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 border border-red-100 backdrop-blur-sm mb-6"
             >
-              <Star className="w-4 h-4 text-primary fill-primary" />
-              <span className="text-sm font-medium text-primary">Produtos em Destaque</span>
+              <Star className="w-4 h-4 text-red-600" />
+              <span className="text-sm font-medium text-red-600">Produtos em Destaque</span>
             </motion.div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">

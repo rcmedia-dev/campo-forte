@@ -81,7 +81,7 @@ export function AboutHero() {
               <span className="text-base font-semibold text-primary">Sobre a CampoForte</span>
             </div>
             <div className="w-1 h-1 bg-primary/40 rounded-full" />
-            <span className="text-sm text-muted-foreground">Desde 1998</span>
+            <span className="text-sm text-muted-foreground">Desde 2022</span>
           </motion.div>
 
           {/* Main Title */}
@@ -158,13 +158,6 @@ export function AboutHero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Conheça Nossa História
-            </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

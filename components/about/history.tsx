@@ -4,29 +4,19 @@ import { motion } from "framer-motion"
 
 const timeline = [
   {
-    year: "2000",
+    year: "2022",
     title: "Fundação",
-    description: "A CampoForte nasce com a missão de revolucionar o setor agrícola português.",
+    description: "A Campo Forte Agronegócios e Consultoria nasceu em 2022, em Luanda, Angola, movida pelo desejo de impulsionar o desenvolvimento do agronegócio nacional.",
   },
   {
-    year: "2008",
-    title: "Expansão Nacional",
-    description: "Expandimos as nossas operações para todo o território nacional.",
+    year: "2022",
+    title: "A que nos propómos",
+    description: "Desde o início, nossa missão foi clara: atender com excelência às necessidades dos produtores locais, oferecendo produtos e soluções de alta qualidade, pautadas na confiança, no profissionalismo e no comprometimento.",
   },
   {
-    year: "2015",
-    title: "Inovação Tecnológica",
-    description: "Lançamento da nossa plataforma digital de gestão agrícola.",
-  },
-  {
-    year: "2020",
-    title: "Sustentabilidade",
-    description: "Implementação de práticas 100% sustentáveis em todos os projetos.",
-  },
-  {
-    year: "2025",
-    title: "Liderança de Mercado",
-    description: "Reconhecidos como líderes em inovação agrícola em Portugal.",
+    year: "2022",
+    title: "Nosso Diferencial",
+    description: "Mais do que uma empresa, somos parceiros do campo, atuando lado a lado com quem produz e constrói o futuro do agronegócio angolano. Com uma equipe dedicada e experiente, crescemos sustentados pela transparência nos relacionamentos e respeito aos clientes. A busca constante pela melhoria contínua e a experiência nos tornaram hoje símbolo de solidez, credibilidade e resultados — valores que nos tornaram referência em nosso segmento.",
   },
 ]
 

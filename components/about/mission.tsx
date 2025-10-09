@@ -8,7 +8,7 @@ const items = [
   {
     icon: Target,
     title: "Missão",
-    description: "Fornecer soluções agrícolas inovadoras e sustentáveis que aumentem a produtividade e rentabilidade dos nossos clientes, contribuindo para um futuro alimentar mais seguro e sustentável.",
+    description: "Promover o fortalecimento do agronegócio em Angola, oferecendo produtos, serviços e consultorias que garantam produtividade, sustentabilidade e rentabilidade aos nossos clientes. Trabalhamos para que cada parceria se transforme em uma história de sucesso no campo, baseada na confiança e na entrega de resultados reais..",
     color: "from-blue-500/20 to-cyan-600/20",
     hoverColor: "group-hover:from-blue-500/30 group-hover:to-cyan-600/30",
     features: ["Inovação Tecnológica", "Sustentabilidade", "Rentabilidade", "Segurança Alimentar"]
@@ -16,7 +16,7 @@ const items = [
   {
     icon: Eye,
     title: "Visão",
-    description: "Ser a empresa de referência em inovação agrícola na Península Ibérica, reconhecida pela excelência dos nossos serviços e pelo impacto positivo no setor agrícola e no meio ambiente.",
+    description: "Ser reconhecida nacionalmente como uma empresa referência em agronegócio e consultoria, destacando-se pela qualidade dos produtos, ética nos relacionamentos e inovação nas soluções que impulsionam o crescimento do setor.",
     color: "from-emerald-500/20 to-green-600/20",
     hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Liderança Regional", "Excelência Comprovada", "Impacto Positivo", "Referência Setorial"]
@@ -24,7 +24,7 @@ const items = [
   {
     icon: Heart,
     title: "Compromisso",
-    description: "Manter um compromisso inabalável com a qualidade, sustentabilidade e satisfação dos nossos clientes, investindo continuamente em tecnologia e desenvolvimento de pessoas.",
+    description: "Atuamos com profissionalismo, comprometimento e confiança, construindo relações baseadas na transparência e respeito. Com inovação e foco no cliente, buscamos soluções que impulsionem o desenvolvimento do agronegócio, sempre com responsabilidade e dedicação em cada projeto.",
     color: "from-rose-500/20 to-pink-600/20",
     hoverColor: "group-hover:from-rose-500/30 group-hover:to-pink-600/30",
     features: ["Qualidade Garantida", "Satisfação Total", "Investimento Tecnológico", "Desenvolvimento Humano"]
@@ -54,10 +54,10 @@ export function Mission() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 border border-red-100 backdrop-blur-sm mb-6"
           >
-            <Target className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Nossos Pilares</span>
+            <Target className="w-4 h-4 text-red-600" />
+            <span className="text-sm font-medium text-red-600">Nossos Pilares</span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-balance bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
@@ -165,12 +165,6 @@ export function Mission() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 shadow-lg group">
-            <a href="/sobre" className="gap-2">
-              Conheça Nossa História Completa
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
           <p className="text-sm text-muted-foreground mt-4">
             Descubra como transformamos esses pilares em ações concretas
           </p>

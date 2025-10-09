@@ -140,10 +140,10 @@ export function Features() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 border border-red-100 backdrop-blur-sm mb-6"
           >
-            <Sprout className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Nossos Diferenciais</span>
+            <Sprout className="w-4 h-4 text-red-600" />
+            <span className="text-sm font-medium text-red-600">Nossos Diferenciais</span>
           </motion.div>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-balance bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
@@ -164,22 +164,6 @@ export function Features() {
             />
           ))}
         </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-16"
-        >
-          <Button asChild size="lg" className="bg-primary hover:bg-primary/90 shadow-lg">
-            <Link href="/sobre" className="gap-2">
-              Conheça Nossa História
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Button>
-        </motion.div>
       </div>
     </section>
   )

@@ -122,10 +122,10 @@ export function Values() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 border border-red-100 backdrop-blur-sm mb-6"
           >
-            <Target className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Nossa Essência</span>
+            <Target className="w-4 h-4 text-red-600" />
+            <span className="text-sm font-medium text-red-600">Nossa Essência</span>
           </motion.div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-balance bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">

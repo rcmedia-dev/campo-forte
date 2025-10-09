@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { Logo } from "./logo"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -35,7 +36,9 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="text-2xl lg:text-3xl font-bold text-primary transition-colors">CampoForte</div>
+            <div className="text-2xl lg:text-3xl font-bold text-primary transition-colors">
+              <Logo/>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
