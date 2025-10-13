@@ -1,6 +1,8 @@
 "use client"
 
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Leaf, ChevronLeft, ChevronRight, Play } from "lucide-react"
+import Link from "next/link"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -8,17 +10,17 @@ import { useState, useEffect } from "react"
 const agriculturalProducts = [
   {
     id: 1,
-    name: "Trator Moderno 4x4",
-    description: "Trator de última geração com tecnologia de precisão e economia de combustível para maximizar sua produtividade no campo.",
-    image: "/hero/banner-1 (1).jpg",
-    category: "Maquinário",
-    features: ["GPS Integrado", "4x4", "Econômico", "Alta Performance"]
+    name: "Sistema de Irrigação Inteligente",
+    description: "Tecnologia avançada de irrigação que reduz o consumo de água em até 40% enquanto aumenta a produtividade.",
+    image: "/hero/banner-1 (2).jpg",
+    category: "Irrigação",
+    features: ["Automatizado", "Econômico", "Sustentável", "IoT"]
   },
   {
-    id: 2,
+    id: 3,
     name: "Fertilizante Orgânico Premium",
     description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
-    image: "/hero/banner-1 (3).png",
+    image: "/hero/banner-1 (3).jpg",
     category: "Insumos",
     features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
   }
@@ -62,7 +64,7 @@ export function Hero() {
   const currentProduct = agriculturalProducts[currentSlide]
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900/20 to-emerald-800/10">
+    <section className="relative h-[800px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-900/20 to-emerald-800/10">
       
       {/* Background Image with Enhanced Overlay */}
       <div className="absolute inset-0">
