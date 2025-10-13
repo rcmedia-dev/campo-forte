@@ -16,17 +16,9 @@ const agriculturalProducts = [
   },
   {
     id: 2,
-    name: "Sistema de Irrigação Inteligente",
-    description: "Tecnologia avançada de irrigação que reduz o consumo de água em até 40% enquanto aumenta a produtividade.",
-    image: "/hero/banner-1 (2).jpg",
-    category: "Irrigação",
-    features: ["Automatizado", "Econômico", "Sustentável", "IoT"]
-  },
-  {
-    id: 3,
     name: "Fertilizante Orgânico Premium",
     description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
-    image: "/hero/banner-1 (3).jpg",
+    image: "/hero/banner-1 (3).png",
     category: "Insumos",
     features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
   }
