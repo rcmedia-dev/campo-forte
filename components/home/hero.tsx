@@ -1,8 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Leaf, ChevronLeft, ChevronRight, Play } from "lucide-react"
-import Link from "next/link"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { useState, useEffect } from "react"
@@ -12,7 +10,7 @@ const agriculturalProducts = [
     id: 1,
     name: "Trator Moderno 4x4",
     description: "Trator de última geração com tecnologia de precisão e economia de combustível para maximizar sua produtividade no campo.",
-    image: "/hero/trator-4x4.jpg",
+    image: "/hero/banner-1 (1).jpg",
     category: "Maquinário",
     features: ["GPS Integrado", "4x4", "Econômico", "Alta Performance"]
   },
@@ -20,7 +18,7 @@ const agriculturalProducts = [
     id: 2,
     name: "Sistema de Irrigação Inteligente",
     description: "Tecnologia avançada de irrigação que reduz o consumo de água em até 40% enquanto aumenta a produtividade.",
-    image: "/hero/tecnologia-irrigacao.jpg",
+    image: "/hero/banner-1 (2).jpg",
     category: "Irrigação",
     features: ["Automatizado", "Econômico", "Sustentável", "IoT"]
   },
@@ -28,25 +26,9 @@ const agriculturalProducts = [
     id: 3,
     name: "Fertilizante Orgânico Premium",
     description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
-    image: "/hero/fertilizante.jpg",
+    image: "/hero/banner-1 (3).jpg",
     category: "Insumos",
     features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
-  },
-  {
-    id: 4,
-    name: "Colheitadeira de Precisão",
-    description: "Colheitadeira com sensores IoT que garantem máxima eficiência e precisão na colheita de grãos.",
-    image: "/hero/colheitedeira.jpg",
-    category: "Maquinário",
-    features: ["Sensores IoT", "Alta Capacidade", "Precisão", "Automática"]
-  },
-  {
-    id: 5,
-    name: "Sementes Geneticamente Melhoradas",
-    description: "Sementes de alta qualidade com resistência a pragas e adaptabilidade a diferentes climas.",
-    image: "/hero/sementes.png",
-    category: "Sementes",
-    features: ["Alta Germinação", "Resistente", "Produtiva", "Certificada"]
   }
 ]
 
@@ -111,20 +93,21 @@ export function Hero() {
               quality={85}
             />
 
-            {/* 🔆 Overlays suavizadas para deixar a imagem mais visível */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-background/40 to-background/20" />
-            <div className="absolute inset-0 bg-gradient-to-r from-background/40 to-background/25" />
-            <div className="absolute inset-0 bg-gradient-to-l from-primary/5 via-transparent to-emerald-400/5" />
+            {/* 🌒 Overlays mais escuras e sutis */}
+            {/* <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/20" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-l from-black/30 via-transparent to-emerald-400/5" /> */}
 
-            {/* Animated Light Effect */}
-            <motion.div 
-              className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-emerald-400/10"
-              animate={{ opacity: [0.3, 0.6, 0.3] }}
+            {/* ✨ Luz suave animada */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-br from-black/10 via-transparent to-emerald-400/10"
+              animate={{ opacity: [0.2, 0.5, 0.2] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
         </AnimatePresence>
       </div>
+
 
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
@@ -166,8 +149,8 @@ export function Hero() {
 
     
       {/* Content */}
-      <div className="container relative z-10 px-4 sm:px-6 lg:px-8 pt-20 pb-16">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
+      {/* <div className="container relative z-10 px-4 sm:px-6 lg:px-8 pt-20 pb-16"> */}
+        {/* <div className="max-w-4xl mx-auto text-center space-y-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={`badge-${currentSlide}`}
@@ -180,9 +163,9 @@ export function Hero() {
               <Leaf className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-primary">{currentProduct.category}</span>
             </motion.div>
-          </AnimatePresence>
+          </AnimatePresence> */}
 
-          <AnimatePresence mode="wait">
+          {/* <AnimatePresence mode="wait">
             <motion.h1
               key={`title-${currentSlide}`}
               initial={{ opacity: 0, y: 30 }}
@@ -214,10 +197,10 @@ export function Hero() {
             >
               {currentProduct.description}
             </motion.p>
-          </AnimatePresence>
+          </AnimatePresence> */}
 
           {/* Features */}
-          <AnimatePresence mode="wait">
+          {/* <AnimatePresence mode="wait">
             <motion.div
               key={`features-${currentSlide}`}
               initial={{ opacity: 0, y: 20 }}
@@ -238,9 +221,9 @@ export function Hero() {
                 </motion.span>
               ))}
             </motion.div>
-          </AnimatePresence>
+          </AnimatePresence> */}
 
-          <AnimatePresence mode="wait">
+          {/* <AnimatePresence mode="wait">
             <motion.div
               key={`buttons-${currentSlide}`}
               initial={{ opacity: 0, y: 20 }}
@@ -259,9 +242,9 @@ export function Hero() {
                 <Link href="/produtos">Ver Catálogo Completo</Link>
               </Button>
             </motion.div>
-          </AnimatePresence>
-        </div>
-      </div>
+          </AnimatePresence> */}
+        {/* </div> */}
+      {/* // </div> */}
 
       {/* Slide Indicators */}
       <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20">
