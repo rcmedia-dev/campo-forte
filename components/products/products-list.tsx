@@ -13,34 +13,30 @@ import { useQuery } from "@apollo/client/react"
 
 export const GET_PRODUTOS = gql`
   query {
-    produtos{
-    nomeDoProduto,
-    slugDoProduto,
-    imagemDoProduto{
-      fileName,
-      url
-    },
-    resumoDoProduto,
-    caracteristicasDoProduto,
-    descricaoCompletaDoProduto{
-      raw
-    },
-    beneficiosDoProduto,
-    createdAt
-  }
-    
+    produtos {
+      nomeDoProduto
+      slugDoProduto
+      imagemDoProduto {
+        fileName
+        url
+      }
+      categoriaDoProduto
+      resumoDoProduto
+      caracteristicasDoProduto
+      descricaoCompletaDoProduto {
+        raw
+      }
+      beneficiosDoProduto
+      createdAt
+    }
   }
 `
 
 // Mapeamento de ícones para categorias
 const categoryIcons: { [key: string]: any } = {
   "Sementes": Sprout,
-  "Fertilizantes": Droplets,
-  "Defensivos": Shield,
-  "Equipamentos": Tractor,
-  "Orgânicos": Leaf,
-  "Insumos": Package,
-  "medicamentos": Heart
+  "produtosAgropecuarios": Droplets,
+  "medicamentosVeterinarios": Heart
 }
 
 // Lista de categorias disponíveis
@@ -75,15 +71,8 @@ const extractTextFromRichText = (richText: any): string => {
 
 // Função para mapear dados da API para o formato do componente
 const mapProductFromAPI = (produto: any, index: number) => {
-  // Determinar categoria baseada no nome ou usar padrão
-  const determineCategory = (nome: string) => {
-    if (nome.toLowerCase().includes('semente')) return "Sementes"
-    if (nome.toLowerCase().includes('medicamento') || nome.toLowerCase().includes('veterinário')) return "medicamentosVeterinarios"
-    if (nome.toLowerCase().includes('fertilizante') || nome.toLowerCase().includes('adubo')) return "produtosAgropecuarios"
-    return "produtosAgropecuarios"
-  }
-
-  const categoria = determineCategory(produto.nomeDoProduto)
+  // Usar a categoria diretamente da API ou determinar baseada no nome
+  const categoria = produto.categoriaDoProduto || "produtosAgropecuarios"
   const Icon = categoryIcons[categoria] || Package
   
   // Processar características
@@ -112,7 +101,6 @@ const mapProductFromAPI = (produto: any, index: number) => {
   const rating = 4.5 + (index * 0.1) > 4.9 ? 4.9 : 4.5 + (index * 0.1)
   const reviews = 30 + (index * 15)
 
-
   return {
     id: produto.slugDoProduto || `produto-${index}`,
     icon: Icon,
@@ -121,7 +109,7 @@ const mapProductFromAPI = (produto: any, index: number) => {
     title: produto.nomeDoProduto || "Produto Sem Nome",
     description: produto.resumoDoProduto || "Descrição não disponível",
     fullDescription: extractTextFromRichText(produto.descricaoCompletaDoProduto),
-    image: produto.imagemDoProduto.url,
+    image: produto.imagemDoProduto?.url || "/placeholder-product.jpg",
     features: features.slice(0, 8),
     benefits: benefits.slice(0, 8),
     badge: badgeInfo.text,
@@ -263,6 +251,11 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
 interface Produto {
   nomeDoProduto: string
   slugDoProduto: string
+  imagemDoProduto: {
+    fileName: string
+    url: string
+  }
+  categoriaDoProduto: string
   resumoDoProduto: string
   caracteristicasDoProduto: string[]
   descricaoCompletaDoProduto: {
@@ -370,7 +363,7 @@ export function ProductsList() {
               const isActive = categoriaAtiva === categoria.id
               const produtosNaCategoria = data?.produtos?.filter(produto => {
                 if (categoria.id === "todos") return true
-                const productCategory = mapProductFromAPI(produto, 0).originalCategory
+                const productCategory = produto.categoriaDoProduto || "produtosAgropecuarios"
                 return productCategory === categoria.id
               }).length || 0
 
