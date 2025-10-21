@@ -131,7 +131,7 @@ export function ContactForm() {
                 type="tel"
                 id="phone"
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300"
-                placeholder="+351 123 456 789"
+                placeholder="+244 931 415 925"
               />
             </motion.div>
 

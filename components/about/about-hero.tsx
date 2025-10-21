@@ -16,15 +16,15 @@ export function AboutHero() {
           className="absolute inset-0"
         >
           <Image
-            src="/modern-agricultural-tractor-in-green-field.jpg"
+            src="/hero/boiada-campo-forte.png"
             alt="Agricultura CampoForte"
             fill
             className="object-cover"
             priority
           />
-          {/* Enhanced Gradient Overlays */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/80 to-background/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/70 to-background/50" />
+          Enhanced Gradient Overlays
+          <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-background/80 to-background/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/20 to-background/50" />
           <div className="absolute inset-0 bg-gradient-to-l from-primary/15 via-transparent to-emerald-500/10" />
           
           {/* Animated Light Effect */}
@@ -101,7 +101,7 @@ export function AboutHero() {
               >
                 Futuro
               </motion.span>{" "}
-              da Agricultura
+              da Agricultura & Pecuária
             </motion.h1>
             
             <motion.div
@@ -119,13 +119,13 @@ export function AboutHero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-xl sm:text-2xl text-foreground/90 text-pretty max-w-4xl mx-auto leading-relaxed font-light"
           >
-            Há mais de duas décadas, a <span className="font-semibold text-primary">CampoForte</span> tem sido pioneira em 
-            soluções inovadoras para o setor agrícola, combinando tradição com tecnologia de ponta para criar 
+            A <span className="font-semibold text-primary">Campo Forte</span> aposta em
+            soluções inovadoras para o setor agropecuário, combinando tradição com tecnologia de ponta para criar 
             um futuro sustentável e produtivo.
           </motion.p>
 
           {/* Stats */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -149,7 +149,7 @@ export function AboutHero() {
                 <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA Buttons */}
           <motion.div
@@ -161,7 +161,7 @@ export function AboutHero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-background/20 backdrop-blur-md border border-border rounded-xl font-semibold hover:bg-background/30 transition-all duration-300"
+              className="px-8 py-4 bg-background/80 backdrop-blur-md border border-border rounded-xl font-semibold hover:bg-background/90 transition-all duration-300"
             >
               Fale Conosco
             </motion.button>

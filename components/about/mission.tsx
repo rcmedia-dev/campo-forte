@@ -9,8 +9,8 @@ const items = [
     icon: Target,
     title: "Missão",
     description: "Promover o fortalecimento do agronegócio em Angola, oferecendo produtos, serviços e consultorias que garantam produtividade, sustentabilidade e rentabilidade aos nossos clientes. Trabalhamos para que cada parceria se transforme em uma história de sucesso no campo, baseada na confiança e na entrega de resultados reais..",
-    color: "from-blue-500/20 to-cyan-600/20",
-    hoverColor: "group-hover:from-blue-500/30 group-hover:to-cyan-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Inovação Tecnológica", "Sustentabilidade", "Rentabilidade", "Segurança Alimentar"]
   },
   {
@@ -25,15 +25,15 @@ const items = [
     icon: Heart,
     title: "Compromisso",
     description: "Atuamos com profissionalismo, comprometimento e confiança, construindo relações baseadas na transparência e respeito. Com inovação e foco no cliente, buscamos soluções que impulsionem o desenvolvimento do agronegócio, sempre com responsabilidade e dedicação em cada projeto.",
-    color: "from-rose-500/20 to-pink-600/20",
-    hoverColor: "group-hover:from-rose-500/30 group-hover:to-pink-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Qualidade Garantida", "Satisfação Total", "Investimento Tecnológico", "Desenvolvimento Humano"]
   },
 ]
 
 export function Mission() {
   return (
-    <section className="py-20 flex justify-center lg:py-32 bg-gradient-to-b from-muted/20 to-background relative overflow-hidden">
+    <section className="py-20 flex justify-center lg:py-32 bg-white">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-0 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />

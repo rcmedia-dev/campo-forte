@@ -10,7 +10,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-primary">CampoForte</h3>
+            <img src="/logo.png" width={200} height={200}/>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Inovação e excelência no setor agrícola. Comprometidos com o futuro sustentável da agricultura.
             </p>
@@ -67,12 +67,12 @@ export function Footer() {
                   href="tel:+351123456789"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  +244 972 345 675
+                  +244 931 415 925
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-muted-foreground">AV. Principal, Lar do Patriota</span>
+                <span className="text-sm text-muted-foreground">AV. Principal, Lar do Patriota, Rua Z, Casa 09</span>
               </li>
             </ul>
           </div>

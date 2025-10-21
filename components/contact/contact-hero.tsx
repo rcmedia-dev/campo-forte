@@ -142,29 +142,6 @@ export function ContactHero() {
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8"
-          >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-primary text-primary-foreground rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              Enviar Mensagem
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-background/60 backdrop-blur-md border border-border rounded-xl font-semibold hover:bg-background/80 transition-all duration-300"
-            >
-              Agendar Chamada
-            </motion.button>
-          </motion.div>
-
           {/* Quick Contact Info */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

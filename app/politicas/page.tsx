@@ -21,7 +21,6 @@ export default function PoliciesPage() {
           </div>
         </div>
       </div>
-      <ScrollToTop />
     </>
   )
 }

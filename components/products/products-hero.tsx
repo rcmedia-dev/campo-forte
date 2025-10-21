@@ -5,7 +5,7 @@ import { Sprout, ArrowDown, Package, Star, Shield } from "lucide-react"
 
 export function ProductsHero() {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/20 to-background overflow-hidden">
+    <section className="relative py-18 min-h-[70vh] flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/20 to-background overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Main gradient overlay */}
@@ -84,16 +84,16 @@ export function ProductsHero() {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-balance leading-tight"
             >
-              Produtos{" "}
+              Produtos de{" "}
               <motion.span 
                 className="bg-gradient-to-r from-primary via-primary to-emerald-600 bg-clip-text text-transparent"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                Premium
+                Qualidade
               </motion.span>{" "}
-              para o Seu Campo
+              para a Sua Fazenda
             </motion.h1>
             
             <motion.div
@@ -105,7 +105,7 @@ export function ProductsHero() {
           </motion.div>
 
           {/* Description */}
-          <motion.p
+          {/* <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -117,7 +117,7 @@ export function ProductsHero() {
           </motion.p>
 
           {/* Features Grid */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -141,10 +141,10 @@ export function ProductsHero() {
                 <div className="text-xs text-muted-foreground font-medium">{item.label}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.div> */} 
 
           {/* CTA Buttons */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -164,7 +164,7 @@ export function ProductsHero() {
             >
               Solicitar Orçamento
             </motion.button>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 

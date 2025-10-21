@@ -47,7 +47,7 @@ export function ContactInfo() {
             </svg>
           }
           title="Telefone"
-          content="+244 972 345 675"
+          content="+244 931 415 925"
           subtitle="Linha direta"
           delay={0.3}
           x={-20}
@@ -74,7 +74,7 @@ export function ContactInfo() {
             </svg>
           }
           title="Morada"
-          content="AV.Principal, Lar do Patriota"
+          content="AV.Principal, Lar do Patriota, Rua Z, Casa 09"
           subtitle="Visite-nos"
           delay={0.5}
           x={-20}
@@ -88,7 +88,7 @@ export function ContactInfo() {
           }
           title="Horário"
           content="Seg - Sex: 8h-18h"
-          subtitle="Sáb: 8h-13h"
+          subtitle="Sáb: 8h-12h"
           delay={0.6}
           x={20}
         />

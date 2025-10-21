@@ -340,7 +340,7 @@ export function FeaturedProducts() {
 
   return (
     <>
-      <section className="py-20 lg:py-28 bg-gradient-to-b from-secondary/20 to-background relative overflow-hidden">
+      <section className="py-20 lg:py-28 bg-white">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-20 -right-20 w-60 h-60 bg-primary/5 rounded-full blur-3xl" />
@@ -363,11 +363,11 @@ export function FeaturedProducts() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 border border-red-100 backdrop-blur-sm mb-6"
             >
               <Star className="w-4 h-4 text-red-600" />
-              <span className="text-sm font-medium text-red-600">Produtos em Destaque</span>
+              <span className="text-sm font-medium text-red-600">Produtos & Serviços em Destaque</span>
             </motion.div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 text-balance">
-              Produtos em Mostra
+              Produtos & Serviços
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
               Clique em qualquer produto para ver informações técnicas completas e especificações detalhadas

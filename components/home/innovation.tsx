@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 export function Innovation() {
   return (
-    <section className="py-20 flex justify-center lg:py-32 bg-muted/30">
+    <section className="py-20 flex justify-center lg:py-32 bg-white">
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
@@ -22,7 +22,7 @@ export function Innovation() {
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-balance">Inovação que Transforma o Campo</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Na CampoForte, acreditamos que a tecnologia é a chave para uma agricultura mais eficiente e sustentável.
+              Na Campo Forte, acreditamos que a tecnologia é a chave para uma agricultura mais eficiente e sustentável.
               Desenvolvemos soluções que combinam inovação digital com conhecimento agrícola tradicional.
             </p>
             <ul className="space-y-3">
@@ -62,7 +62,7 @@ export function Innovation() {
           >
             <div className="aspect-[4/3] rounded-lg overflow-hidden bg-muted border border-border">
               <img
-                src="/modern-agricultural-technology-with-drones-and-sen.jpg"
+                src="/hero/PEGASUS INOVATION.jpg"
                 alt="Tecnologia agrícola avançada"
                 className="w-full h-full object-cover"
               />

@@ -19,9 +19,8 @@ export default function AboutPage() {
         <History />
         <Mission />
         <Values />
-        <Team />
+        {/* <Team /> */}
       </div>
-      <ScrollToTop />
     </>
   )
 }

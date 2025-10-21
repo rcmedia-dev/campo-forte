@@ -12,18 +12,26 @@ const agriculturalProducts = [
     id: 1,
     name: "Sistema de Irrigação Inteligente",
     description: "Tecnologia avançada de irrigação que reduz o consumo de água em até 40% enquanto aumenta a produtividade.",
-    image: "/hero/banner-1 (2).jpg",
+    image: "/hero/PEGASUS.png",
     category: "Irrigação",
     features: ["Automatizado", "Econômico", "Sustentável", "IoT"]
+  },
+  {
+    id: 2,
+    name: "Fertilizante Orgânico Premium",
+    description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
+    image: "/hero/RAMBO NOVO.png",
+    category: "Insumos",
+    features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
   },
   {
     id: 3,
     name: "Fertilizante Orgânico Premium",
     description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
-    image: "/hero/banner-1 (3).jpg",
+    image: "/hero/PLANTAR NOVO.jpg",
     category: "Insumos",
     features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
-  }
+  },
 ]
 
 export function Hero() {
@@ -56,7 +64,7 @@ export function Hero() {
 
     const interval = setInterval(() => {
       nextSlide()
-    }, 4000)
+    }, 8000)
 
     return () => clearInterval(interval)
   }, [isAutoPlaying, currentSlide])
@@ -125,20 +133,20 @@ export function Hero() {
       {/* Navigation Arrows */}
       <motion.button
         onClick={prevSlide}
-        className="absolute left-4 sm:left-6 z-20 p-3 rounded-full bg-background/10 backdrop-blur-md border border-primary/30 hover:bg-background/20 transition-all group"
+        className="absolute left-4 sm:left-6 z-20 p-3 rounded-full bg-background/10 backdrop-blur-md border border-white/30 hover:bg-background/20 transition-all group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        <ChevronLeft className="w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
+        <ChevronLeft className="w-5 h-5 text-white group-hover:text-white/80 transition-colors" />
       </motion.button>
       
       <motion.button
         onClick={nextSlide}
-        className="absolute right-4 sm:right-6 z-20 p-3 rounded-full bg-background/10 backdrop-blur-md border border-primary/30 hover:bg-background/20 transition-all group"
+        className="absolute right-4 sm:right-6 z-20 p-3 rounded-full bg-background/10 backdrop-blur-md border border-white/30 hover:bg-background/20 transition-all group"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        <ChevronRight className="w-5 h-5 text-primary group-hover:text-primary/80 transition-colors" />
+        <ChevronRight className="w-5 h-5  text-white group-hover:text-white/80 transition-colors" />
       </motion.button>
 
     
@@ -249,8 +257,8 @@ export function Hero() {
               onClick={() => goToSlide(index)}
               className={`relative rounded-full transition-all ${
                 index === currentSlide
-                  ? "w-8 bg-primary shadow-lg"
-                  : "w-2 bg-primary/30 hover:bg-primary/50"
+                  ? "w-8 bg-white shadow-lg"
+                  : "w-2 bg-white/30 hover:bg-white/50"
               } h-2`}
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
@@ -258,7 +266,7 @@ export function Hero() {
               {index === currentSlide && (
                 <motion.div
                   layoutId="activeIndicator"
-                  className="absolute inset-0 rounded-full bg-primary"
+                  className="absolute inset-0 rounded-full bg-white"
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
@@ -275,14 +283,14 @@ export function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.div
-          className="w-6 h-10 border-2 border-primary/40 rounded-full flex items-start justify-center p-2 backdrop-blur-md bg-background/10"
+          className="w-6 h-10 border-2 border-white/40 rounded-full flex items-start justify-center p-2 backdrop-blur-md bg-background/10"
           animate={{ y: [0, 5, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.div
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-1.5 h-1.5 bg-primary rounded-full"
+            className="w-1.5 h-1.5 bg-white rounded-full"
           />
         </motion.div>
       </motion.div>

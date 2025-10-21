@@ -4,20 +4,18 @@ import { Innovation } from "@/components/home/innovation"
 import { FeaturedProducts } from "@/components/home/featured-products"
 import { Stats } from "@/components/home/stats"
 import { CTA } from "@/components/home/cta"
-import { ScrollToTop } from "@/components/scroll-to-top"
 
 export default function HomePage() {
   return (
     <>
       <div className="flex flex-col">
         <Hero />
-        <Features />
+        {/* <Features /> */}
         <Innovation />
         <FeaturedProducts />
-        <Stats />
+        {/* <Stats /> */}
         <CTA />
       </div>
-      <ScrollToTop />
     </>
   )
 }

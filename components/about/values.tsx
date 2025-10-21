@@ -9,24 +9,24 @@ const values = [
     icon: Lightbulb,
     title: "Inovação",
     description: "Buscamos constantemente novas soluções e tecnologias para melhorar o setor agrícola.",
-    color: "from-purple-500/20 to-violet-600/20",
-    hoverColor: "group-hover:from-purple-500/30 group-hover:to-violet-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["P&D Contínuo", "Tecnologia de Ponta", "Soluções Criativas", "Melhoria Constante"]
   },
   {
     icon: Users,
     title: "Colaboração",
     description: "Trabalhamos em parceria com os nossos clientes para alcançar objetivos comuns.",
-    color: "from-blue-500/20 to-cyan-600/20",
-    hoverColor: "group-hover:from-blue-500/30 group-hover:to-cyan-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Parcerias Sólidas", "Trabalho em Equipe", "Objetivos Compartilhados", "Suporte Mútuo"]
   },
   {
     icon: Award,
     title: "Excelência",
     description: "Comprometemo-nos com os mais altos padrões de qualidade em tudo o que fazemos.",
-    color: "from-amber-500/20 to-orange-600/20",
-    hoverColor: "group-hover:from-amber-500/30 group-hover:to-orange-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Qualidade Superior", "Padrões Elevados", "Resultados Comprovados", "Reconhecimento Setorial"]
   },
   {
@@ -41,16 +41,16 @@ const values = [
     icon: TrendingUp,
     title: "Crescimento",
     description: "Investimos no desenvolvimento contínuo da nossa equipa e dos nossos clientes.",
-    color: "from-indigo-500/20 to-blue-600/20",
-    hoverColor: "group-hover:from-indigo-500/30 group-hover:to-blue-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Desenvolvimento Contínuo", "Evolução Constante", "Expansão Sustentável", "Aprendizado Permanente"]
   },
   {
     icon: Shield,
     title: "Integridade",
     description: "Agimos com transparência, ética e responsabilidade em todas as nossas relações.",
-    color: "from-slate-500/20 to-gray-600/20",
-    hoverColor: "group-hover:from-slate-500/30 group-hover:to-gray-600/30",
+    color: "from-emerald-500/20 to-green-600/20",
+    hoverColor: "group-hover:from-emerald-500/30 group-hover:to-green-600/30",
     features: ["Transparência Total", "Ética Profissional", "Responsabilidade Social", "Confiança Mútua"]
   },
 ]

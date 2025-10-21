@@ -1,12 +1,14 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { GeistSans } from "geist/font/sans"
-import { GeistMono } from "geist/font/mono"
-import { Analytics } from "@vercel/analytics/next"
-import "./globals.css"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
-import { Suspense } from "react"
+import type React from "react";
+import type { Metadata } from "next";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Analytics } from "@vercel/analytics/next";
+import "./globals.css";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { Suspense } from "react";
+import WhatsAppButton from "@/components/floating-button-whatsapp";
+import { ApolloWrapper } from "@/providers/apollo-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -56,23 +58,28 @@ export const metadata: Metadata = {
     },
   },
   generator: "v0.app",
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="pt" className="scroll-smooth">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <Suspense fallback={<div>Loading...</div>}>
           <Navigation />
-          <main className="min-h-screen">{children}</main>
+          <main className="min-h-screen">
+            <ApolloWrapper>
+              {children}
+            </ApolloWrapper>
+            <WhatsAppButton />
+          </main>
           <Footer />
         </Suspense>
         <Analytics />
       </body>
     </html>
-  )
+  );
 }

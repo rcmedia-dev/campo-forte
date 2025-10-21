@@ -5,7 +5,7 @@ import { Sprout, ArrowDown } from "lucide-react"
 
 export function ServicesHero() {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/30 to-background overflow-hidden">
+    <section className="relative min-h-[80vh] py-18 flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/30 to-background overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Main gradient overlay */}
@@ -71,7 +71,7 @@ export function ServicesHero() {
             className="inline-flex items-center gap-3 px-6 py-3 rounded-2xl bg-background/60 backdrop-blur-md border border-primary/30 shadow-lg"
           >
             <Sprout className="w-5 h-5 text-primary" />
-            <span className="text-base font-semibold text-primary">Serviços e Produtos</span>
+            <span className="text-base font-semibold text-primary">Serviços</span>
             <div className="w-1 h-1 bg-primary/40 rounded-full" />
             <span className="text-sm text-muted-foreground">Soluções Integradas</span>
           </motion.div>
@@ -112,12 +112,11 @@ export function ServicesHero() {
             className="text-xl sm:text-2xl text-foreground/90 text-pretty max-w-4xl mx-auto leading-relaxed font-light"
           >
             Oferecemos uma gama completa de serviços e produtos inovadores, desenvolvidos para maximizar a 
-            <span className="font-semibold text-primary"> produtividade</span> e{" "}
-            <span className="font-semibold text-emerald-600"> sustentabilidade</span> da sua operação agrícola.
+            <span className="font-semibold text-primary"> produtividade.</span>
           </motion.p>
 
           {/* Features Grid */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
@@ -140,7 +139,7 @@ export function ServicesHero() {
                 <div className="text-sm text-muted-foreground font-medium">{item.label}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.div> */}
 
           {/* CTA Buttons */}
           <motion.div

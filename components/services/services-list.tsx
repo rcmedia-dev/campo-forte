@@ -103,7 +103,7 @@ export function ServicesList() {
       </div>
 
       <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -127,7 +127,7 @@ export function ServicesList() {
           <p className="text-lg text-muted-foreground text-pretty leading-relaxed max-w-2xl mx-auto">
             Desenvolvemos serviços integrados que transformam desafios agrícolas em oportunidades de crescimento sustentável
           </p>
-        </motion.div>
+        </motion.div> */}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (

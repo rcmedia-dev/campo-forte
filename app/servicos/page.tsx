@@ -17,7 +17,6 @@ export default function ServicesPage() {
         <ServicesList />
         <ServicesCTA />
       </div>
-      <ScrollToTop />
     </>
   )
 }
