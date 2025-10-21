@@ -62,7 +62,7 @@ export function Innovation() {
           >
             <div className="aspect-[4/3] rounded-lg overflow-hidden bg-muted border border-border">
               <img
-                src="/hero/PEGASUS INOVATION.jpg"
+                src="/hero/produtos e serviços/Pagasus_.png"
                 alt="Tecnologia agrícola avançada"
                 className="w-full h-full object-cover"
               />

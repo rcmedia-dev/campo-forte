@@ -32,6 +32,22 @@ const agriculturalProducts = [
     category: "Insumos",
     features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
   },
+  {
+    id: 4,
+    name: "Fertilizante Orgânico Premium",
+    description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
+    image: "/hero/TETRA-MICINA NOVO BANNER.jpg",
+    category: "Insumos",
+    features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
+  },
+  {
+    id: 5,
+    name: "Fertilizante Orgânico Premium",
+    description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
+    image: "/hero/SEMENTES.jpg",
+    category: "Insumos",
+    features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
+  },
 ]
 
 export function Hero() {

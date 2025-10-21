@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
-import { Sprout, Droplets, Shield, Tractor, Leaf, Package, CheckCircle, ArrowRight, Star, X, Clock, Truck, ShieldCheck, Users, Zap, Heart } from "lucide-react"
+import { Sprout, Droplets, Shield, Tractor, Leaf, Package, CheckCircle, ArrowRight, Star, X, Heart } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -13,27 +13,22 @@ import { useQuery } from "@apollo/client/react"
 
 export const GET_PRODUTOS = gql`
   query {
-    produtos {
-      nomeDoProduto
-      slugDoProduto
-      resumoDoProduto
-      caracteristicasDoProduto
-      descricaoCompletaDoProduto {
-        raw
-      }
-      especificacoesTecnicas
-      beneficiosDoProduto
-      tempoDeEntrega
-      tempoDeGarantia
-      precoDoProduto
-      quantidadeMinimaAEncomendar
-      imagemDoProduto {
-        url
-        fileName
-      }
-      categoriaDoProduto
-      createdAt
-    }
+    produtos{
+    nomeDoProduto,
+    slugDoProduto,
+    imagemDoProduto{
+      fileName,
+      url
+    },
+    resumoDoProduto,
+    caracteristicasDoProduto,
+    descricaoCompletaDoProduto{
+      raw
+    },
+    beneficiosDoProduto,
+    createdAt
+  }
+    
   }
 `
 
@@ -60,7 +55,6 @@ const extractTextFromRichText = (richText: any): string => {
   if (!richText?.raw) return "Descrição completa não disponível"
 
   try {
-    // Verifica se já é um objeto
     const parsed = typeof richText.raw === 'string'
       ? JSON.parse(richText.raw)
       : richText.raw
@@ -79,47 +73,25 @@ const extractTextFromRichText = (richText: any): string => {
   }
 }
 
-
-// Função para formatar o preço em Kwanza
-const formatPrice = (price: number): string => {
-  return new Intl.NumberFormat('pt-AO', {
-    style: 'currency',
-    currency: 'AOA'
-  }).format(price)
-}
-
-
-// Função para processar especificações técnicas
-const processTechnicalSpecs = (specs: any[]): { [key: string]: string } => {
-  if (!specs || !Array.isArray(specs)) return {}
-  
-  const technicalSpecs: { [key: string]: string } = {}
-  
-  specs.forEach(spec => {
-    if (typeof spec === 'string' && spec.includes(':')) {
-      const [key, ...valueParts] = spec.split(':')
-      technicalSpecs[key.trim()] = valueParts.join(':').trim()
-    } else {
-      technicalSpecs[`Especificação ${Object.keys(technicalSpecs).length + 1}`] = String(spec)
-    }
-  })
-  
-  return technicalSpecs
-}
-
 // Função para mapear dados da API para o formato do componente
 const mapProductFromAPI = (produto: any, index: number) => {
-  const Icon = categoryIcons[produto.categoriaDoProduto] || Package
+  // Determinar categoria baseada no nome ou usar padrão
+  const determineCategory = (nome: string) => {
+    if (nome.toLowerCase().includes('semente')) return "Sementes"
+    if (nome.toLowerCase().includes('medicamento') || nome.toLowerCase().includes('veterinário')) return "medicamentosVeterinarios"
+    if (nome.toLowerCase().includes('fertilizante') || nome.toLowerCase().includes('adubo')) return "produtosAgropecuarios"
+    return "produtosAgropecuarios"
+  }
+
+  const categoria = determineCategory(produto.nomeDoProduto)
+  const Icon = categoryIcons[categoria] || Package
   
-  // Processar características (já é um array)
+  // Processar características
   const features = Array.isArray(produto.caracteristicasDoProduto) 
     ? produto.caracteristicasDoProduto 
     : []
 
-  // Processar especificações técnicas
-  const technicalSpecs = processTechnicalSpecs(produto.especificacoesTecnicas)
-
-  // Processar benefícios (já é um array)
+  // Processar benefícios
   const benefits = Array.isArray(produto.beneficiosDoProduto)
     ? produto.beneficiosDoProduto
     : []
@@ -128,38 +100,34 @@ const mapProductFromAPI = (produto: any, index: number) => {
   const getBadgeInfo = (categoria: string) => {
     const badges: { [key: string]: { text: string; color: string } } = {
       "Sementes": { text: "Sementes", color: "bg-amber-500 text-amber-950" },
-      "Produtos Agropecuários": { text: "Produtos Agropecuários", color: "bg-blue-500 text-white" },
+      "produtosAgropecuarios": { text: "Produtos Agropecuários", color: "bg-blue-500 text-white" },
       "medicamentosVeterinarios": { text: "Medicamentos", color: "bg-red-500 text-white" }
     }
     return badges[categoria] || { text: null, color: "" }
   }
 
-  const badgeInfo = getBadgeInfo(produto.categoriaDoProduto)
+  const badgeInfo = getBadgeInfo(categoria)
 
-  // Gerar rating e reviews placeholder baseado no índice
+  // Gerar rating e reviews placeholder
   const rating = 4.5 + (index * 0.1) > 4.9 ? 4.9 : 4.5 + (index * 0.1)
   const reviews = 30 + (index * 15)
+
 
   return {
     id: produto.slugDoProduto || `produto-${index}`,
     icon: Icon,
-    category: formatCategoryName(produto.categoriaDoProduto),
-    originalCategory: produto.categoriaDoProduto,
+    category: formatCategoryName(categoria),
+    originalCategory: categoria,
     title: produto.nomeDoProduto || "Produto Sem Nome",
     description: produto.resumoDoProduto || "Descrição não disponível",
     fullDescription: extractTextFromRichText(produto.descricaoCompletaDoProduto),
-    image: produto.imagemDoProduto?.url || "/placeholder-product.jpg",
-    features: features.slice(0, 4),
-    technicalSpecs,
-    benefits: benefits.slice(0, 4),
+    image: produto.imagemDoProduto.url,
+    features: features.slice(0, 8),
+    benefits: benefits.slice(0, 8),
     badge: badgeInfo.text,
     badgeColor: badgeInfo.color,
     rating: parseFloat(rating.toFixed(1)),
     reviews,
-    delivery: produto.tempoDeEntrega || "Sob consulta",
-    warranty: produto.tempoDeGarantia || "12 meses",
-    price: produto.precoDoProduto ? formatPrice(produto.precoDoProduto) : "Consulte",
-    unit: produto.quantidadeMinimaAEncomendar ? `mín. ${produto.quantidadeMinimaAEncomendar} unidade${produto.quantidadeMinimaAEncomendar > 1 ? 's' : ''}` : "por unidade",
     rawData: produto
   }
 }
@@ -199,7 +167,7 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative bg-card rounded-2xl border border-border shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-card rounded-2xl border border-border shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -210,14 +178,14 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Image Section */}
-              <div className="relative h-96 lg:h-full min-h-[500px]">
+            <div className="flex flex-col">
+              {/* Image Section - Top */}
+              <div className="relative h-80 w-full">
                 <Image
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-cover rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none"
+                  className="object-cover rounded-t-2xl"
                 />
                 
                 {/* Badges and Info */}
@@ -233,16 +201,19 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                     <span className="text-sm text-muted-foreground">({product.reviews} reviews)</span>
                   </div>
                 </div>
+
+                {/* Category Icon */}
+                <div className="absolute bottom-4 left-4">
+                  <div className="w-12 h-12 rounded-lg bg-background/80 backdrop-blur-sm flex items-center justify-center border border-border/50">
+                    <product.icon className="w-6 h-6 text-primary" />
+                  </div>
+                </div>
               </div>
 
-              {/* Content Section */}
+              {/* Content Section - Bottom */}
               <div className="p-6 lg:p-8 space-y-6">
                 {/* Header */}
                 <div className="space-y-3">
-                  {/* <div className="flex items-center gap-2 text-sm font-semibold text-primary uppercase tracking-wide">
-                    <product.icon className="w-4 h-4" />
-                    {product.category}
-                  </div> */}
                   <h2 className="text-2xl lg:text-3xl font-bold text-foreground">
                     {product.title}
                   </h2>
@@ -250,62 +221,6 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                     {product.fullDescription}
                   </p>
                 </div>
-
-                {/* Quick Info Grid */}
-                {/* <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 p-4 bg-secondary/30 rounded-xl">
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Truck className="w-4 h-4" />
-                      <span>Entrega</span>
-                    </div>
-                    <p className="font-semibold text-foreground">{product.delivery}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <ShieldCheck className="w-4 h-4" />
-                      <span>Garantia</span>
-                    </div>
-                    <p className="font-semibold text-foreground">{product.warranty}</p>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="w-4 h-4" />
-                      <span>Avaliações</span>
-                    </div>
-                    <p className="font-semibold text-foreground">{product.reviews}+</p>
-                  </div>
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Zap className="w-4 h-4" />
-                      <span>Disponível</span>
-                    </div>
-                    <p className="font-semibold text-green-600">Em Estoque</p>
-                  </div>
-                </div> */}
-
-                {/* Price Section */}
-                {/* <div className="bg-primary/5 rounded-xl p-4">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-foreground">{product.price}</span>
-                    <span className="text-sm text-muted-foreground">{product.unit}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground mt-1">Preço especial para grandes quantidades</p>
-                </div> */}
-
-                {/* Technical Specifications */}
-                {Object.keys(product.technicalSpecs).length > 0 && (
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-foreground">Especificações Técnicas</h3>
-                    <div className="flex flex-col gap-4">
-                      {Object.entries(product.technicalSpecs).map(([key, value]) => (
-                        <div key={key} className="flex justify-between items-center py-2 border-b border-border/50">
-                          <span className="text-sm text-muted-foreground font-medium">{key}</span>
-                          <span className="text-sm font-medium text-foreground text-right">{String(value)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
                 {/* Features */}
                 {product.features.length > 0 && (
@@ -353,17 +268,7 @@ interface Produto {
   descricaoCompletaDoProduto: {
     raw: string
   }
-  especificacoesTecnicas: string[]
   beneficiosDoProduto: string[]
-  tempoDeEntrega: string
-  tempoDeGarantia: string
-  precoDoProduto: number
-  quantidadeMinimaAEncomendar: number
-  imagemDoProduto: {
-    url: string
-    fileName: string
-  }
-  categoriaDoProduto: string
   createdAt: string
 }
 
@@ -452,32 +357,6 @@ export function ProductsList() {
         </div>
 
         <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
-          {/* <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm mb-6"
-            >
-              <Package className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">Nossos Produtos</span>
-            </motion.div>
-
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 text-balance bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent">
-              Linha Completa de Produtos
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto text-pretty leading-relaxed">
-              Soluções integradas e tecnológicas para todas as etapas da sua produção agrícola
-            </p>
-          </motion.div> */}
-
           {/* Filtros de Categoria */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -489,9 +368,11 @@ export function ProductsList() {
             {CATEGORIAS.map((categoria) => {
               const Icon = categoria.icon
               const isActive = categoriaAtiva === categoria.id
-              const produtosNaCategoria = data?.produtos?.filter(produto => 
-                categoria.id === "todos" ? true : produto.categoriaDoProduto === categoria.id
-              ).length || 0
+              const produtosNaCategoria = data?.produtos?.filter(produto => {
+                if (categoria.id === "todos") return true
+                const productCategory = mapProductFromAPI(produto, 0).originalCategory
+                return productCategory === categoria.id
+              }).length || 0
 
               return (
                 <button
@@ -604,9 +485,6 @@ export function ProductsList() {
 
                       <CardHeader className="relative space-y-3">
                         <div className="space-y-2">
-                          {/* <div className="text-sm font-semibold text-primary uppercase tracking-wide">
-                            {product.category}
-                          </div> */}
                           <CardTitle className="text-xl font-bold text-foreground leading-tight">
                             {product.title}
                           </CardTitle>
@@ -682,7 +560,7 @@ export function ProductsList() {
                 </p>
               </div>
               <Button asChild size="lg" className="bg-primary hover:bg-primary/90 whitespace-nowrap">
-                <a href="/consultoria">
+                <a href="/contactos">
                   Falar com Especialista
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </a>

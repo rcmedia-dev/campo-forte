@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer";
 import { Suspense } from "react";
 import WhatsAppButton from "@/components/floating-button-whatsapp";
 import { ApolloWrapper } from "@/providers/apollo-provider";
+import BProgressProvider from "@/components/bprogress-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -71,9 +72,11 @@ export default function RootLayout({
         <Suspense fallback={<div>Loading...</div>}>
           <Navigation />
           <main className="min-h-screen">
-            <ApolloWrapper>
-              {children}
-            </ApolloWrapper>
+            <BProgressProvider>
+              <ApolloWrapper>
+                {children}
+              </ApolloWrapper>
+            </BProgressProvider>
             <WhatsAppButton />
           </main>
           <Footer />
