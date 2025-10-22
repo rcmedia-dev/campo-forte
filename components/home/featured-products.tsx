@@ -9,80 +9,98 @@ import { useState } from "react"
 const featuredProducts = [
   {
     id: 1,
-    title: "Sementes Premium Soja MAX",
-    description: "Genética avançada com alta produtividade e resistência para maximizar seus resultados no campo.",
-    image: "/premium-agricultural-seeds-in-professional-packagi.jpg",
-    category: "Sementes",
-    variety: "Soja Intacta RR2 PRO",
-    cycle: "Ciclo: 115-125 dias",
-    productivity: "Potencial: 85-95 sc/ha",
-    resistance: ["Ferrugem Asiática", "Cigarrinha", "Secamento Precoce"],
-    features: ["Tratamento Industrial", "Alto Vigor", "Uniformidade 98%", "Germinação >95%"],
+    title: "Sistema Jet Bov – Identificação de Animais",
+    description: "Tecnologia de ponta para gestão inteligente de rebanhos, integrando identificação eletrónica, rastreamento e análise de desempenho em tempo real.",
+    image: "/hero/BANNER.jpg",
+    category: "Pecuária Digital",
+    variety: "Pecuária de Corte",
+    cycle: "Monitorização Contínua",
+    productivity: "Aumento médio de 20% na eficiência do manejo",
+    resistance: ["Erros de Identificação", "Perda de Dados", "Fraudes em Registros"],
+    features: ["Identificação eletrónica via brinco RFID",
+      "Sincronização automática com base de dados",
+      "Leitura rápida e sem contacto",
+      "Compatível com tablets e smartphones",
+      "Relatórios de desempenho e ganho de peso"],
     rating: 4.8,
     reviews: 127,
     technicalSpecs: {
-      plantPopulation: "240-280 mil plantas/ha",
-      maturation: "Grupo 6.5",
-      plantingDepth: "3-5 cm",
-      spacing: "45-50 cm entre linhas"
+      tecnologia: "RFID UHF e Bluetooth",
+      alcanceLeitura: "Até 12 metros",
+      compatibilidade: "Android, iOS e Web",
+       armazenamento: "Base de dados em nuvem com backup automático",
+       energia: "Bateria recarregável de longa duração"
     },
     benefits: [
-      "Maior tolerância a estresses climáticos",
-      "Melhor enchimento de grãos",
-      "Arquitetura moderna de planta",
-      "Facilidade de colheita"
+      "Reduz falhas na identificação e controle de animais",
+      "Aumenta a precisão e velocidade das operações no campo",
+      "Facilita a rastreabilidade completa do rebanho",
+      "Permite decisões baseadas em dados reais",
+      "Moderniza a gestão da pecuária de corte com tecnologia 4.0"
     ]
   },
   {
     id: 2,
-    title: "Fertilizante NutriFort Plus",
-    description: "Formulação balanceada com micronutrientes essenciais para desenvolvimento radicular e vegetativo.",
-    image: "/modern-agricultural-fertilizer-bags-in-warehouse.jpg",
-    category: "Fertilizantes",
-    variety: "NPK 10-20-20 + Zn + B",
-    cycle: "Aplicação: Plantio e Cobertura",
-    productivity: "Incremento: +25% produtividade",
-    resistance: ["Estresse Hídrico", "Solo Ácido", "Baixa Fertilidade"],
-    features: ["Liberação Gradual", "Baixa Volatilização", "Alta Solubilidade", "Sem Cloreto"],
+    title: "Curral Eficiente – Manejo Inteligente",
+    description: "Infraestrutura moderna e funcional para manejo racional do gado, otimizando tempo, reduzindo o estresse animal e aumentando a produtividade.",
+    image: "/hero/CURRAL EFICIÊNTE.jpg",
+    category: "Infraestrutura Pecuária",
+    variety: "Curral Modular de Corte",
+    cycle: "Operação Contínua",
+    productivity: "Redução de até 40% no tempo de manejo",
+    resistance: ["Desgaste por uso intenso", "Corrosão", "Impactos estruturais"],
+    features: ["Design ergonómico e seguro para o gado e operador",
+      "Materiais de alta durabilidade (aço galvanizado e madeira tratada)",
+      "Fluxo otimizado de entrada e saída de animais",
+      "Cobertura parcial para conforto térmico",
+      "Espaços modulares adaptáveis a diferentes lotes"],
     rating: 4.9,
     reviews: 89,
     technicalSpecs: {
-      composition: "N 10%, P₂O₅ 20%, K₂O 20%",
-      micronutrients: "Zn 1%, B 0.5%",
-      dosage: "250-400 kg/ha",
-      application: "Plantio e 30 DAE"
+      capacidade: "Suporte para até 250 cabeças de gado",
+      estrutura: "Madeira tratada e metal galvanizado",
+      drenagem: "Sistema de escoamento inteligente",
+      segurança: "Portões com travamento automático",
+      áreaRecomendada: "2.500 m²"
     },
     benefits: [
-      "Desenvolvimento radicular intenso",
-      "Maior aproveitamento nutricional",
-      "Redução de perdas por lixiviação",
-      "Compatível com defensivos"
+      "Melhora o bem-estar animal e reduz acidentes",
+      "Facilita o manejo e o controle sanitário",
+      "Diminui custos operacionais com logística de rebanho",
+      "Aumenta a eficiência do processo de pesagem e vacinação",
+      "Adaptável a qualquer tamanho de propriedade rural"
     ]
   },
   {
     id: 3,
-    title: "Trator AgroForce 4x4",
-    description: "Tecnologia de precisão e máxima eficiência energética para operações pesadas.",
-    image: "/modern-agricultural-tractor-in-green-field.jpg",
-    category: "Equipamentos",
-    variety: "Modelo 1204 - 120HP",
-    cycle: "Operação: 2.000h/ano",
-    productivity: "Economia: 15% combustível",
-    resistance: ["Transmissão Reforçada", "Suspensão Premium", "Corrosão"],
-    features: ["GPS Integrado", "Controle Eletrônico", "Cabine Comfort", "Ar Condicionado"],
+    title: "Tronco de Contenção Profissional – Segurança e Eficiência no Manejo",
+    description: "Equipamento robusto e ergonómico desenvolvido para garantir segurança no manejo, facilitando procedimentos como vacinação, inseminação, marcação e exame do gado.",
+    image: "/hero/TROCOS DE CONTENÇÃO COM BOI.jpg",
+    category: "Equipamentos Pecuários",
+    variety: "Tronco de Contenção",
+    cycle: "Uso Diário",
+    productivity: "Aumento de até 50% na agilidade do manejo",
+    resistance: ["Impactos", "Corrosão", "Desgaste por uso intenso"],
+    features: ["Estrutura metálica reforçada com acabamento galvanizado",
+      "Laterais basculantes para acesso total ao animal",
+      "Sistema de travamento seguro e silencioso",
+      "Pisos antiderrapantes e de fácil limpeza",
+      "Abertura frontal regulável para diferentes portes de gado"],
     rating: 4.7,
     reviews: 203,
     technicalSpecs: {
-      engine: "Turbo Diesel 6.8L",
-      transmission: "16 Marchas + RE",
-      hydraulic: "Sistema 110L/min",
-      fuelCapacity: "210 litros"
+      dimensoes: "3,2 m (C) x 1,1 m (L) x 2,1 m (A)",
+      peso: "520 kg",
+      material: "Aço carbono com madeira tratada",
+      sistemaAbertura: "Manual com opção hidráulica",
+      capacidade: "Bovinos de 200 a 1000 kg"
     },
     benefits: [
-      "Menor custo operacional por hectare",
-      "Conforto para longas jornadas",
-      "Precisão nas operações",
-      "Baixa manutenção"
+      "Garante total segurança para o operador e para o animal",
+      "Reduz o estresse durante os procedimentos veterinários",
+      "Facilita o manejo de grandes rebanhos com rapidez",
+      "Durabilidade e baixa necessidade de manutenção",
+      "Compatível com balanças e sistemas de identificação eletrónica"
     ]
   }
 ]
@@ -150,7 +168,7 @@ function ProductCard({ product, index, onProductClick }: ProductCardProps) {
           </div>
           
           <div className="bg-secondary/30 rounded-lg p-3">
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-1">
               <span className="text-sm font-semibold text-foreground">Produtividade</span>
               <span className="text-sm font-bold text-primary">{product.productivity}</span>
             </div>
@@ -210,7 +228,7 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative bg-card rounded-2xl border border-border shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            className="relative bg-card rounded-2xl border border-border shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
@@ -221,14 +239,14 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
               <X className="w-5 h-5" />
             </button>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Image Section */}
-              <div className="relative h-80 lg:h-full min-h-[400px]">
+            <div className="flex flex-col">
+              {/* Image Section - AGORA NO TOPO */}
+              <div className="relative h-80 w-full">
                 <Image
                   src={product.image}
                   alt={product.title}
                   fill
-                  className="object-cover rounded-t-2xl lg:rounded-l-2xl lg:rounded-tr-none"
+                  className="object-cover rounded-t-2xl"
                 />
                 
                 {/* Badges */}
@@ -244,7 +262,7 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                 </div>
               </div>
 
-              {/* Content Section */}
+              {/* Content Section - AGORA EMBAIXO */}
               <div className="p-6 lg:p-8 space-y-6">
                 {/* Header */}
                 <div className="space-y-3">
@@ -265,7 +283,7 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                     </div>
                     <p className="font-semibold text-foreground">{product.variety}</p>
                   </div>
-                  <div className="space-y-1">
+                  <div className="flex flex-col">
                     <div className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Zap className="w-4 h-4" />
                       <span>Produtividade</span>
@@ -318,13 +336,13 @@ function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
                 {/* Footer */}
                 <div className="flex items-center justify-between pt-6 border-t border-border">
                   <div className="flex items-center gap-4 text-sm">
-                   
+                    {/* Espaço para informações adicionais se necessário */}
                   </div>
                   
-                  <Button size="lg" className="bg-primary hover:bg-primary/90">
+                  {/* <Button size="lg" className="bg-primary hover:bg-primary/90">
                     Solicitar Orçamento
                     <ArrowRight className="ml-2 w-4 h-4" />
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
@@ -393,7 +411,7 @@ export function FeaturedProducts() {
             className="text-center"
           >
             <Button asChild size="lg" className="bg-primary hover:bg-primary/90 shadow-lg group">
-              <a href="/produtos" className="gap-2">
+              <a href="/servicos" className="gap-2">
                 Explorar Catálogo Completo
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>

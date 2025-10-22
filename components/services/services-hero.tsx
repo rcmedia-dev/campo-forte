@@ -142,7 +142,7 @@ export function ServicesHero() {
           </motion.div> */}
 
           {/* CTA Buttons */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
@@ -162,7 +162,7 @@ export function ServicesHero() {
             >
               Ver Produtos
             </motion.button>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
 

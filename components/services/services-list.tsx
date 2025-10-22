@@ -3,11 +3,12 @@
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { CheckCircle, Sparkles } from "lucide-react"
+import { CheckCircle, Sparkles, ArrowRight, Zap, Clock, Shield, TrendingUp } from "lucide-react"
 import { useState } from "react"
 import { gql } from "@apollo/client"
 import { client } from "@/lib/apollo"
 import { useQuery } from "@apollo/client/react"
+import { Button } from "@/components/ui/button"
 
 export const GET_SERVICOS = gql`
   query {
@@ -27,27 +28,24 @@ export const GET_SERVICOS = gql`
 
 // Mapeamento de ícones para serviços
 const serviceIcons: { [key: string]: any } = {
-  "Consultoria Agrícola": Sparkles,
-  "Sistemas de Irrigação": Sparkles,
+  "Consultoria Agrícola": TrendingUp,
+  "Sistemas de Irrigação": Zap,
   "Análise de Dados": Sparkles,
-  "Agricultura de Precisão": Sparkles,
-  "Gestão de Equipamentos": Sparkles,
+  "Agricultura de Precisão": Shield,
+  "Gestão de Equipamentos": Clock,
   "Produtos Agrícolas": Sparkles,
-  // Adicione mais mapeamentos conforme necessário
 }
 
 // Função para mapear dados da API para o formato do componente
 const mapServiceFromAPI = (servico: any, index: number) => {
   const Icon = serviceIcons[servico.nomeDoServico] || Sparkles
   
-  // Processar o que inclui o serviço (assumindo que é um array ou string)
   const features = Array.isArray(servico.oqueIncluiOServico) 
     ? servico.oqueIncluiOServico 
     : typeof servico.oqueIncluiOServico === 'string'
     ? servico.oqueIncluiOServico.split(',').map((item: string) => item.trim())
     : []
 
-  // Gerar stats placeholder baseado no índice
   const statsOptions = [
     "Aumento de 35% na produtividade",
     "Economia de 40% em água",
@@ -65,7 +63,7 @@ const mapServiceFromAPI = (servico: any, index: number) => {
     title: servico.nomeDoServico || "Serviço Sem Nome",
     description: servico.descricaoDoServico || "Descrição não disponível",
     image: servico.imagemDoServico?.url || "/placeholder-service.jpg",
-    features: features.slice(0, 4), // Limita a 4 características
+    features: features.slice(0, 4),
     stats: stats,
     rawData: servico
   }
@@ -92,6 +90,19 @@ export function ServicesList() {
     client,
     fetchPolicy: "cache-and-network"
   })
+
+  const [selectedService, setSelectedService] = useState<any>(null)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const handleServiceClick = (service: any) => {
+    setSelectedService(service)
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+    setSelectedService(null)
+  }
 
   if (loading) {
     return (
@@ -136,188 +147,268 @@ export function ServicesList() {
   const servicos = data?.servicos?.map(mapServiceFromAPI) || []
 
   return (
-    <section className="py-20 flex justify-center lg:py-32 bg-gradient-to-b from-background to-muted/10 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <motion.div
-          className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1, 1.1, 1],
-            opacity: [0.3, 0.5, 0.3]
-          }}
-          transition={{ duration: 8, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute bottom-10 right-10 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"
-          animate={{ 
-            scale: [1.1, 1, 1.1],
-            opacity: [0.4, 0.6, 0.4]
-          }}
-          transition={{ duration: 7, repeat: Infinity, delay: 1 }}
-        />
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
+    <>
+      <section className="py-20 flex justify-center lg:py-32 bg-gradient-to-b from-background to-muted/10 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/20 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+            className="absolute top-10 left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl"
+            animate={{ 
+              scale: [1, 1.1, 1],
+              opacity: [0.3, 0.5, 0.3]
             }}
-            animate={{
-              y: [0, -20, 0],
-              opacity: [0, 1, 0],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
+            transition={{ duration: 8, repeat: Infinity }}
           />
-        ))}
-      </div>
-
-      <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {servicos.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ 
-                duration: 0.7, 
-                delay: index * 0.1,
-                type: "spring",
-                stiffness: 100
-              }}
-              className="group cursor-pointer"
-            >
-              <Card className="h-full pt-0 group hover:border-primary/40 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 overflow-hidden border-border/60 bg-card backdrop-blur-sm relative">
-                {/* Single Color Background Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-primary/10 opacity-60 group-hover:from-primary/10 group-hover:to-primary/15 transition-all duration-500" />
-                
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={service.image || "/placeholder.svg"}
-                    alt={service.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  
-                  {/* Minimal Overlay for Text Readability */}
-                  <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background/80 to-transparent" />
-                  
-                  {/* Icon Container */}
-                  <motion.div 
-                    className="absolute top-4 left-4 w-12 h-12 rounded-xl bg-background/90 backdrop-blur-md flex items-center justify-center border border-border/50 shadow-lg"
-                    whileHover={{ 
-                      scale: 1.05,
-                      transition: { type: "spring", stiffness: 400, damping: 10 }
-                    }}
-                  >
-                    <service.icon className="w-6 h-6 text-primary" />
-                  </motion.div>
-
-                  {/* Stats Badge */}
-                  <div className="absolute top-4 right-4">
-                    <motion.div 
-                      className="px-3 py-1 rounded-full bg-background/80 backdrop-blur-sm border border-primary/20 text-xs font-medium text-primary"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      {service.stats}
-                    </motion.div>
-                  </div>
-                </div>
-
-                <CardHeader className="relative space-y-3 pb-3">
-                  <CardTitle className="text-xl font-bold text-foreground">
-                    {service.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm leading-relaxed text-muted-foreground">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="relative space-y-4 pt-0">
-                  {service.features.length > 0 && (
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-xs font-semibold text-foreground/70 uppercase tracking-wide">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                        <span>Benefícios Incluídos</span>
-                      </div>
-                      <ul className="space-y-2.5">
-                        {service.features.map((feature: string, idx: number) => (
-                          <motion.li 
-                            key={idx}
-                            initial={{ opacity: 0, x: -5 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.4, delay: 0.3 + idx * 0.1 }}
-                            className="flex items-start gap-3 text-sm"
-                          >
-                            <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
-                            <span className="text-foreground/80 leading-tight">{feature}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Hover Indicator */}
-                  <motion.div 
-                    className="w-full h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    whileInView={{ width: "100%" }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  />
-                </CardContent>
-
-                {/* Enhanced Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/3 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              </Card>
-            </motion.div>
-          ))}
+          <motion.div
+            className="absolute bottom-10 right-10 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl"
+            animate={{ 
+              scale: [1.1, 1, 1.1],
+              opacity: [0.4, 0.6, 0.4]
+            }}
+            transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+          />
         </div>
 
-        {/* Bottom Decoration */}
-        {servicos.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-center mt-12"
-          >
-            <div className="inline-flex items-center gap-3 text-sm text-muted-foreground">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span>Todos os serviços incluem suporte técnico especializado</span>
-              <Sparkles className="w-4 h-4 text-primary" />
-            </div>
-          </motion.div>
-        )}
+        <div className="container relative z-10 px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {servicos.map((service, index) => (
+              <motion.div
+                key={service.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: index * 0.1,
+                }}
+                className="group cursor-pointer"
+                onClick={() => handleServiceClick(service)}
+              >
+                {/* Card com layout alternativo - Minimalista com borda sutil */}
+                <Card className="h-full overflow-hidden border-2 border-border/30 bg-card/80 backdrop-blur-sm relative transition-all duration-500 hover:border-primary/40 hover:shadow-lg">
+                  
+                  {/* Header com ícone e título alinhados */}
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20 flex items-center justify-center">
+                        <service.icon className="w-6 h-6 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-lg font-bold text-foreground truncate">
+                          {service.title}
+                        </CardTitle>
+                        <CardDescription className="text-xs text-muted-foreground mt-1">
+                          Serviço especializado
+                        </CardDescription>
+                      </div>
+                    </div>
+                  </CardHeader>
 
-        {servicos.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center py-12"
-          >
-            <div className="max-w-md mx-auto space-y-4">
-              <Sparkles className="w-16 h-16 text-muted-foreground mx-auto opacity-50" />
-              <h3 className="text-xl font-semibold text-foreground">
-                Nenhum serviço encontrado
-              </h3>
-              <p className="text-muted-foreground">
-                Não há serviços disponíveis no momento.
+                  {/* Imagem em formato mais compacto */}
+                  <div className="relative h-40 mx-4 rounded-xl overflow-hidden">
+                    <Image
+                      src={service.image || "/placeholder.svg"}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Overlay sutil */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/10 to-transparent" />
+                    
+                    {/* Badge de estatística */}
+                    <div className="absolute bottom-3 left-3">
+                      <div className="px-2 py-1 rounded-lg bg-background/90 backdrop-blur-sm border border-border text-xs font-medium text-primary">
+                        {service.stats}
+                      </div>
+                    </div>
+                  </div>
+
+                  <CardContent className="p-4 space-y-4">
+                    {/* Descrição compacta */}
+                    <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                      {service.description}
+                    </p>
+
+                    {/* Features em grid compacto */}
+                    {service.features.length > 0 && (
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-xs font-semibold text-foreground/60 uppercase tracking-wide">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full" />
+                          <span>Inclui</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {service.features.slice(0, 4).map((feature: string, idx: number) => (
+                            <div 
+                              key={idx}
+                              className="flex items-center gap-2 text-xs text-foreground/70"
+                            >
+                              <CheckCircle className="w-3 h-3 text-green-500 flex-shrink-0" />
+                              <span className="truncate">{feature}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CTA sutil */}
+                    <div className="flex items-center justify-between pt-2">
+                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Sparkles className="w-3 h-3 text-primary" />
+                        <span>Saiba mais</span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-primary transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </CardContent>
+
+                  {/* Efeito de brilho sutil no hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom Decoration */}
+          {servicos.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="text-center mt-12"
+            >
+              <div className="inline-flex items-center gap-3 text-sm text-muted-foreground">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span>Todos os serviços incluem suporte técnico especializado</span>
+                <Sparkles className="w-4 h-4 text-primary" />
+              </div>
+            </motion.div>
+          )}
+
+          {servicos.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center py-12"
+            >
+              <div className="max-w-md mx-auto space-y-4">
+                <Sparkles className="w-16 h-16 text-muted-foreground mx-auto opacity-50" />
+                <h3 className="text-xl font-semibold text-foreground">
+                  Nenhum serviço encontrado
+                </h3>
+                <p className="text-muted-foreground">
+                  Não há serviços disponíveis no momento.
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </div>
+      </section>
+
+      {/* Modal para detalhes do serviço (MANTIDO IGUAL) */}
+      {selectedService && (
+        <ServiceModal 
+          service={selectedService}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+        />
+      )}
+    </>
+  )
+}
+
+// Componente Modal para detalhes do serviço (MANTIDO EXATAMENTE IGUAL)
+function ServiceModal({ service, isOpen, onClose }: { service: any, isOpen: boolean, onClose: () => void }) {
+  if (!service) return null
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.9, opacity: 0 }}
+        transition={{ type: "spring", damping: 25, stiffness: 300 }}
+        className="relative bg-card rounded-2xl border border-border shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-10 p-2 rounded-full bg-background/80 backdrop-blur-sm border border-border hover:bg-background transition-colors"
+        >
+          <ArrowRight className="w-5 h-5 rotate-45" />
+        </button>
+
+        <div className="flex flex-col">
+          {/* Image Section - NO TOPO */}
+          <div className="relative h-64 w-full">
+            <Image
+              src={service.image || "/placeholder.svg"}
+              alt={service.title}
+              fill
+              className="object-cover rounded-t-2xl"
+            />
+            
+            {/* Badges */}
+            <div className="absolute top-4 left-4 flex flex-col gap-2">
+              <div className="flex items-center gap-1 bg-background/80 backdrop-blur-sm rounded-full px-3 py-1 border border-border">
+                <service.icon className="w-4 h-4 text-primary" />
+                <span className="text-sm font-medium text-primary">Serviço</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Content Section - EMBAIXO */}
+          <div className="p-6 lg:p-8 space-y-6">
+            {/* Header */}
+            <div className="space-y-3">
+              <h2 className="text-2xl lg:text-3xl font-bold text-foreground">
+                {service.title}
+              </h2>
+              <p className="text-muted-foreground leading-relaxed">
+                {service.description}
               </p>
             </div>
-          </motion.div>
-        )}
-      </div>
-    </section>
+
+            {/* Quick Stats */}
+            <div className="p-4 bg-secondary/30 rounded-xl">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Zap className="w-4 h-4" />
+                <span>Resultado Esperado</span>
+              </div>
+              <p className="font-semibold text-primary mt-1">{service.stats}</p>
+            </div>
+
+            {/* Features */}
+            {service.features.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-foreground">O Que Inclui Este Serviço</h3>
+                <div className="grid gap-3">
+                  {service.features.map((feature: string, idx: number) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
+                      <span className="text-foreground">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* CTA - REMOVIDO O BOTÃO DE SOLICITAR ORÇAMENTO */}
+            <div className="flex items-center justify-center pt-6 border-t border-border">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span>Suporte especializado incluído</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }

@@ -42,7 +42,7 @@ const agriculturalProducts = [
     id: 5,
     name: "Fertilizante Orgânico Premium",
     description: "Fertilizante 100% natural que aumenta a produtividade em 25% sem agredir o solo ou o meio ambiente.",
-    image: "/hero/SEMENTES.jpg",
+    image: "/hero/SEMENTES BANNER.png",
     category: "Insumos",
     features: ["100% Natural", "Alta Produtividade", "Ecológico", "Certificado"]
   },
