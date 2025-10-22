@@ -12,7 +12,7 @@ export const metadata = {
 export default function ServicesPage() {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex pt-5 flex-col">
         <ServicesHero />
         <ServicesList />
         <ServicesCTA />

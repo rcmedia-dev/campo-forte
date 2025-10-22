@@ -5,7 +5,7 @@ import { Sprout, ArrowDown } from "lucide-react"
 
 export function ServicesHero() {
   return (
-    <section className="relative min-h-[80vh] py-18 flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/30 to-background overflow-hidden">
+    <section className="relative min-h-[80vh] py-28 flex items-center justify-center bg-gradient-to-br from-green-50 via-emerald-50/30 to-background overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Main gradient overlay */}

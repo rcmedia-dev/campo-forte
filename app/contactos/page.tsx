@@ -11,7 +11,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex pt-5 flex-col">
         {/* <ContactHero /> */}
         <div className="container flex justify-center items-center px-4 sm:px-6 lg:px-8 py-2 lg:py-42">
           <div className="flex flex-col lg:flex-row gap-16 justify-center items-center w-full max-w-7xl">
