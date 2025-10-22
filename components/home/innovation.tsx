@@ -7,7 +7,7 @@ import { motion } from "framer-motion"
 
 export function Innovation() {
   return (
-    <section className="py-20 flex justify-center lg:py-32 bg-white">
+    <section className="pt-0 -mt-10 flex justify-center lg:py-32 bg-white z-20 relative ">
       <div className="container px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
