@@ -99,7 +99,7 @@ export default function Hero({ currentSlide, onNextSlide, onPrevSlide, onGoToSli
                 className={`${
                   isMobile 
                     ? "object-contain scale-105" // Contain no mobile com zoom sutil
-                    : "object-cover" // Cover no desktop
+                    : "object-contain" // Cover no desktop
                 }`}
                 priority
                 onLoad={() => setImageLoaded(true)}
