@@ -13,7 +13,7 @@ import { useQuery } from "@apollo/client/react"
 
 export const GET_PRODUTOS = gql`
   query {
-    produtos {
+    produtos(first: 600, orderBy: createdAt_DESC) {
       nomeDoProduto
       slugDoProduto
       imagemDoProduto {

@@ -1,8 +1,9 @@
 import { gql } from 'graphql-request';
 
 export const GET_PRODUTOS = gql`
-  query {
-    produtos {
+  query GetProdutos {
+    produtos(first: 600, orderBy: createdAt_DESC) {
+      id
       nomeDoProduto
       slugDoProduto
       resumoDoProduto
@@ -25,6 +26,7 @@ export const GET_PRODUTOS = gql`
     }
   }
 `;
+
 
 export const GET_PRODUTO_BY_SLUG = gql`
   query GetProdutoBySlug($slug: String!) {
