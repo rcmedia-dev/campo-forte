@@ -34,7 +34,7 @@ export const GET_PRODUTOS = gql`
 
 // Mapeamento de ícones para categorias
 const categoryIcons: { [key: string]: any } = {
-  "Sementes": Sprout,
+  "sementes": Sprout,
   "produtosAgropecuarios": Droplets,
   "medicamentosVeterinarios": Heart
 }
@@ -88,7 +88,7 @@ const mapProductFromAPI = (produto: any, index: number) => {
   // Determinar badge baseado na categoria
   const getBadgeInfo = (categoria: string) => {
     const badges: { [key: string]: { text: string; color: string } } = {
-      "Sementes": { text: "Sementes", color: "bg-amber-500 text-amber-950" },
+      "sementes": { text: "Sementes", color: "bg-amber-500 text-amber-950" },
       "produtosAgropecuarios": { text: "Produtos Agropecuários", color: "bg-blue-500 text-white" },
       "medicamentosVeterinarios": { text: "Medicamentos", color: "bg-red-500 text-white" }
     }
