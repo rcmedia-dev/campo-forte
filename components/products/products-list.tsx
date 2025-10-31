@@ -43,7 +43,7 @@ const categoryIcons: { [key: string]: any } = {
 const CATEGORIAS = [
   { id: "todos", nome: "Todos os Produtos", icon: Package },
   { id: "medicamentosVeterinarios", nome: "Medicamentos", icon: Heart },
-  { id: "Sementes", nome: "Sementes", icon: Sprout },
+  { id: "sementes", nome: "Sementes", icon: Sprout },
   { id: "produtosAgropecuarios", nome: "Produtos Agropecuários", icon: Droplets },
 ]
 
