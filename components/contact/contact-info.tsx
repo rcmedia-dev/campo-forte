@@ -60,7 +60,7 @@ export function ContactInfo() {
             </svg>
           }
           title="Email"
-          content="geral@campoforte.ao"
+          content="geral@campo-forte.ao"
           subtitle="Resposta em 24h"
           delay={0.4}
           x={20}

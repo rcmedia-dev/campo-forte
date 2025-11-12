@@ -58,7 +58,7 @@ export function Footer() {
                   href="mailto:info@campoforte.pt"
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
-                  info@campoforte.ao
+                  geral@campo-forte.ao
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -107,7 +107,7 @@ export function Footer() {
         <div className="mt-12 pt-8 border-t border-border">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              © {currentYear} CampoForte. Todos os direitos reservados.
+              © {currentYear} Campo Forte. Todos os direitos reservados.
             </p>
             <div className="flex gap-6">
               <Link

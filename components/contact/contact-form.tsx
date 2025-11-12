@@ -1,8 +1,44 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { useRef, useState } from "react"
+import emailjs from "@emailjs/browser"
 
 export function ContactForm() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [isSent, setIsSent] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!formRef.current) return
+
+    setIsLoading(true)
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAIL_JS_ID!, // Substitua pelo seu Service ID
+        process.env.NEXT_PUBLIC_EMAIL_JS_TEMPLATE_ID!, // Substitua pelo seu Template ID
+        formRef.current,
+        process.env.NEXT_PUBLIC_EMAIL_JS_PUBLIC_KEY // Substitua pela sua Public Key
+      )
+      
+      setIsSent(true)
+      formRef.current.reset()
+      
+      // Reset do estado após 5 segundos
+      setTimeout(() => {
+        setIsSent(false)
+      }, 5000)
+      
+    } catch (error) {
+      console.error("Erro ao enviar email:", error)
+      alert("Ocorreu um erro ao enviar a mensagem. Tente novamente.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <motion.div 
       initial={{ opacity: 0, scale: 0.9 }}
@@ -63,7 +99,17 @@ export function ContactForm() {
             Preencha o formulário abaixo e entraremos em contacto consigo.
           </motion.p>
           
-          <form className="space-y-7">
+          {isSent && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-xl"
+            >
+              ✅ Mensagem enviada com sucesso! Entraremos em contacto em breve.
+            </motion.div>
+          )}
+          
+          <form ref={formRef} onSubmit={handleSubmit} className="space-y-7">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -79,6 +125,8 @@ export function ContactForm() {
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   id="firstName"
+                  name="first_name" // Nome para o EmailJS
+                  required
                   className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300"
                   placeholder="Seu primeiro nome"
                 />
@@ -91,6 +139,8 @@ export function ContactForm() {
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   id="lastName"
+                  name="last_name" // Nome para o EmailJS
+                  required
                   className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300"
                   placeholder="Seu último nome"
                 />
@@ -111,6 +161,8 @@ export function ContactForm() {
                 whileFocus={{ scale: 1.02 }}
                 type="email"
                 id="email"
+                name="email" // Nome para o EmailJS
+                required
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300"
                 placeholder="seu.email@exemplo.pt"
               />
@@ -130,6 +182,7 @@ export function ContactForm() {
                 whileFocus={{ scale: 1.02 }}
                 type="tel"
                 id="phone"
+                name="phone" // Nome para o EmailJS
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300"
                 placeholder="+244 931 415 925"
               />
@@ -148,6 +201,8 @@ export function ContactForm() {
               <motion.select
                 whileFocus={{ scale: 1.02 }}
                 id="subject"
+                name="subject" // Nome para o EmailJS
+                required
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300 appearance-none bg-white"
               >
                 <option value="">Selecione um assunto</option>
@@ -172,7 +227,9 @@ export function ContactForm() {
               <motion.textarea
                 whileFocus={{ scale: 1.02 }}
                 id="message"
+                name="message" // Nome para o EmailJS
                 rows={6}
+                required
                 className="w-full px-5 py-4 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all duration-200 hover:border-gray-300 resize-none"
                 placeholder="Descreva como podemos ajudá-lo..."
               ></motion.textarea>
@@ -182,24 +239,37 @@ export function ContactForm() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ 
-                scale: 1.05,
+                scale: isLoading ? 1 : 1.05,
                 transition: { duration: 0.2 }
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ duration: 0.5, delay: 1.1 }}
               viewport={{ once: true }}
               type="submit"
-              className="w-full bg-gradient-to-r from-green-700 to-green-800 text-white py-5 px-6 rounded-xl font-bold text-lg hover:from-green-800 hover:to-green-900 transition-all duration-300 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+              disabled={isLoading}
+              className="w-full bg-gradient-to-r from-green-700 to-green-800 text-white py-5 px-6 rounded-xl font-bold text-lg hover:from-green-800 hover:to-green-900 transition-all duration-300 shadow-lg hover:shadow-xl focus:ring-2 focus:ring-green-500 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed"
             >
               <motion.span 
                 className="flex items-center justify-center gap-3"
-                whileHover={{ x: 5 }}
+                whileHover={{ x: isLoading ? 0 : 5 }}
                 transition={{ duration: 0.2 }}
               >
-                Enviar Mensagem
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
+                {isLoading ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Enviando...
+                  </>
+                ) : (
+                  <>
+                    Enviar Mensagem
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </>
+                )}
               </motion.span>
             </motion.button>
           </form>
